@@ -84,13 +84,13 @@ export default async function CaseStudyPage({ params }: PageProps) {
       : null;
 
   return (
-    <div className="pt-20 sm:pt-28 pb-16 sm:pb-24 md:pb-32">
+    <div className="pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-24 md:pb-32">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Link */}
         <div className="mb-6 sm:mb-8">
           <Link
             href="/#projects"
-            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-primary-muted hover:text-accent transition-colors py-1.5"
+            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-primary-muted hover:text-accent transition-colors py-1.5 focus-visible:outline-accent"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to all projects &amp; experiments</span>
@@ -133,31 +133,45 @@ export default async function CaseStudyPage({ params }: PageProps) {
             {project.shortDescription}
           </p>
 
-          {/* Action Links & Key Metadata */}
-          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-            {project.liveUrl && (
-              <Button href={project.liveUrl} variant="primary" size="md" isExternal className="w-full sm:w-auto min-h-[44px]">
-                <span>Live Project Demo</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </Button>
-            )}
+          {/* Action Links & Flexible Role Metadata */}
+          <div className="mt-6 sm:mt-8 flex flex-col md:flex-row items-stretch md:items-start gap-3 sm:gap-4 w-full">
+            {/* Buttons Group */}
+            <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 shrink-0">
+              {project.liveUrl && (
+                <Button
+                  href={project.liveUrl}
+                  variant="primary"
+                  size="md"
+                  isExternal
+                  className="w-full sm:w-auto min-h-[44px] justify-center"
+                >
+                  <span>Live Project Demo</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </Button>
+              )}
 
-            {project.githubUrl && (
-              <Button
-                href={project.githubUrl}
-                variant="secondary"
-                size="md"
-                isExternal
-                className="w-full sm:w-auto min-h-[44px]"
-              >
-                <Github className="w-4 h-4" />
-                <span>Source Repository</span>
-              </Button>
-            )}
+              {project.githubUrl && (
+                <Button
+                  href={project.githubUrl}
+                  variant="secondary"
+                  size="md"
+                  isExternal
+                  className="w-full sm:w-auto min-h-[44px] justify-center"
+                >
+                  <Github className="w-4 h-4" />
+                  <span>Source Repository</span>
+                </Button>
+              )}
+            </div>
 
-            <div className="p-3 rounded-lg bg-surface border border-border-subtle flex items-center justify-between sm:justify-start gap-2 text-xs font-mono text-primary-muted sm:ml-auto w-full sm:w-auto">
-              <span className="text-primary-muted/70">Role:</span>
-              <span className="text-primary font-medium truncate">{caseStudy.role}</span>
+            {/* Role Card: Wraps naturally, never overflows, takes remaining width */}
+            <div className="flex-1 min-w-0 p-3.5 sm:p-4 rounded-xl bg-surface border border-border-subtle flex flex-col sm:flex-row items-start gap-2 text-xs sm:text-sm">
+              <span className="font-mono text-accent uppercase tracking-wider font-semibold text-[11px] sm:text-xs shrink-0 mt-0.5">
+                Role:
+              </span>
+              <span className="text-primary font-normal leading-relaxed break-words [overflow-wrap:anywhere] flex-1 min-w-0">
+                {caseStudy.role}
+              </span>
             </div>
           </div>
         </header>

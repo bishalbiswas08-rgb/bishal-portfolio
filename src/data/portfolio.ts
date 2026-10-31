@@ -696,7 +696,7 @@ export const portfolioData: PortfolioConfig = {
     headline: "HAVE AN IDEA WORTH BUILDING?",
     subheadline:
       "Whether it's software, AI, hardware, or something weird enough to be interesting — I'd like to hear about it.",
-    email: "bishalbiswas@gmail.com",
+    email: "bishalbiswas08@gmail.com",
     socials: [
       {
         platform: "GitHub",
