@@ -693,9 +693,9 @@ export const portfolioData: PortfolioConfig = {
     },
   ],
   contact: {
-    headline: "HAVE AN IDEA WORTH BUILDING?",
+    headline: "THE NEXT BUILD STARTS HERE.",
     subheadline:
-      "Whether it's software, AI, hardware, or something weird enough to be interesting — I'd like to hear about it.",
+      "If you've got an idea, a weird problem, or something worth building, let's talk.",
     email: "bishalbiswas08@gmail.com",
     socials: [
       {

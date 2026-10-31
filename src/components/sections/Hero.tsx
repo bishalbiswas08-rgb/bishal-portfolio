@@ -13,6 +13,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
+import Decal from "@/components/ui/Decal";
 
 export default function Hero() {
   const { developer } = portfolioData;
@@ -149,18 +150,18 @@ export default function Hero() {
             >
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-accent text-bg font-heading font-bold text-sm tracking-tight hover:bg-accent-hover transition-all duration-200 shadow-[0_0_24px_rgba(168,255,120,0.2)] focus-visible:outline-accent min-h-[48px]"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#A8FF78] text-[#050807] font-heading font-black text-sm tracking-tight hover:bg-[#baff8f] transition-all duration-200 shadow-[0_0_28px_rgba(168,255,120,0.35)] focus-visible:outline-accent active:scale-[0.98] min-h-[48px]"
               >
                 <span>SEE WHAT I&apos;VE MADE</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-[#050807] stroke-[2.5]" />
               </a>
 
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-surface border border-border-subtle hover:border-accent/40 text-primary font-heading font-semibold text-sm tracking-tight transition-all duration-200 focus-visible:outline-accent min-h-[48px]"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-surface-elevated/90 border border-neutral-700/80 hover:border-accent hover:bg-surface-elevated text-neutral-100 hover:text-white font-heading font-bold text-sm tracking-tight transition-all duration-200 focus-visible:outline-accent active:scale-[0.98] min-h-[48px] shadow-sm"
               >
                 <span>LET&apos;S TALK</span>
-                <ArrowRight className="w-4 h-4 text-accent" />
+                <ArrowRight className="w-4 h-4 text-accent stroke-[2.2]" />
               </a>
 
               <span className="text-[11px] font-mono text-primary-muted/50 hidden xl:inline ml-2">
@@ -176,6 +177,25 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
             className="lg:col-span-5 relative w-full"
           >
+            {/* Decal top right */}
+            <div className="absolute -top-3.5 -right-2 z-20 hidden sm:block">
+              <Decal
+                text="NO IDEA TOO WEIRD"
+                variant="tuning"
+                rotate={-2.5}
+              />
+            </div>
+
+            {/* Decal bottom left */}
+            <div className="absolute -bottom-3 -left-3 z-20 hidden sm:block">
+              <Decal
+                text="2:14 AM LOGIC"
+                subtext="ESP32"
+                variant="pinout"
+                rotate={1.5}
+              />
+            </div>
+
             {/* The Workbench Card */}
             <div className="relative rounded-2xl bg-surface/90 border border-border-subtle/80 p-5 sm:p-6 backdrop-blur-md shadow-[0_12px_40px_rgba(0,0,0,0.5)] space-y-4 overflow-hidden">
               {/* Subtle top bar resembling a test rig header */}

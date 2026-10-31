@@ -14,6 +14,7 @@ import { portfolioData } from "@/data/portfolio";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
+import Decal from "@/components/ui/Decal";
 
 export default function About() {
   const { developer, about, education, milestones, contact } = portfolioData;
@@ -122,6 +123,15 @@ export default function About() {
             ) : (
               <div className="rounded-2xl border border-border-subtle bg-surface p-4 sm:p-6 md:p-8 flex flex-col justify-between relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-full pointer-events-none" />
+
+                {/* Corner Tuning Decal */}
+                <div className="absolute top-3 right-3 hidden sm:block">
+                  <Decal
+                    text="BREAK IT // FIX IT"
+                    variant="tuning"
+                    rotate={2}
+                  />
+                </div>
 
                 <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-center justify-between border-b border-border-subtle pb-3">

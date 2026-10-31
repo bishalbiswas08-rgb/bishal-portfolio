@@ -33,13 +33,13 @@ export default function Button({
 
   const variantStyles = {
     primary:
-      "bg-accent text-background font-semibold hover:bg-accent-hover hover:shadow-[0_0_20px_rgba(168,255,120,0.25)] border border-accent",
+      "bg-[#A8FF78] text-[#050807] font-bold hover:bg-[#baff8f] hover:shadow-[0_0_24px_rgba(168,255,120,0.35)] border border-[#A8FF78] active:scale-[0.98]",
     secondary:
-      "bg-surface text-primary border border-border-subtle hover:border-border-hover hover:bg-surface-elevated",
+      "bg-surface-elevated text-neutral-100 border border-neutral-700/80 hover:border-accent hover:text-white hover:bg-surface-elevated/90 active:scale-[0.98]",
     outline:
-      "border border-border-strong text-primary hover:border-accent hover:text-accent bg-transparent",
+      "border border-neutral-700 text-neutral-100 hover:border-accent hover:text-accent bg-neutral-900/60 active:scale-[0.98]",
     ghost:
-      "text-primary-muted hover:text-primary hover:bg-surface/50 border border-transparent",
+      "text-primary-muted hover:text-primary hover:bg-surface/60 border border-transparent active:scale-[0.98]",
   };
 
   const combinedClasses = cn(
