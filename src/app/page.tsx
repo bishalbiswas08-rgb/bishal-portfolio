@@ -4,6 +4,7 @@ import AmbientBackground from "@/components/ui/AmbientBackground";
 import SectionFlowBridge from "@/components/ui/SectionFlowBridge";
 import Hero from "@/components/sections/Hero";
 import PersonalIntroMotion from "@/components/sections/PersonalIntroMotion";
+import MotionInfographic from "@/components/infographic/MotionInfographic";
 import About from "@/components/sections/About";
 import Expertise from "@/components/sections/Expertise";
 import SelectedWork from "@/components/sections/SelectedWork";
@@ -36,52 +37,62 @@ export default function Home() {
 
         {/* Bridge 2 -> 3 */}
         <SectionFlowBridge
-          step="02 // THE WORKBENCH"
+          step="02 // THE MACHINE"
+          label="HOW I THINK & BUILD"
+          sublabel="Interactive Blueprint"
+        />
+
+        {/* Step 3: Interactive Motion Infographic: THIS IS BASICALLY ME */}
+        <MotionInfographic />
+
+        {/* Bridge 3 -> 4 */}
+        <SectionFlowBridge
+          step="03 // THE WORKBENCH"
           label="EXPERIMENT → BUILD"
           sublabel="Breaking & Fixing"
         />
 
-        {/* Step 3: About Bishal */}
+        {/* Step 4: About Bishal */}
         <About />
 
-        {/* Bridge 3 -> 4 */}
+        {/* Bridge 4 -> 5 */}
         <SectionFlowBridge
-          step="03 // THE TOOLBOX"
+          step="04 // THE TOOLBOX"
           label="LANGUAGES & HARDWARE"
           sublabel="Stuff on My Desk"
         />
 
-        {/* Step 4: Expertise & Tools */}
+        {/* Step 5: Expertise & Tools */}
         <Expertise />
 
-        {/* Bridge 4 -> 5 */}
+        {/* Bridge 5 -> 6 */}
         <SectionFlowBridge
-          step="04 // BUILT & SHIPPED"
+          step="05 // BUILT & SHIPPED"
           label="PROJECTS & CODE"
           sublabel="Real Deployments"
         />
 
-        {/* Step 5: Selected Work (ATTENDER, SmartShut, CraveAI, EDEN, Embedded Lab) */}
+        {/* Step 6: Selected Work (ATTENDER, SmartShut, CraveAI, EDEN, Embedded Lab) */}
         <SelectedWork />
 
-        {/* Bridge 5 -> 6 */}
+        {/* Bridge 6 -> 7 */}
         <SectionFlowBridge
-          step="05 // ON THE BENCH"
+          step="06 // ON THE BENCH"
           label="LATE-NIGHT LOGS"
           sublabel="Active Testing"
         />
 
-        {/* Step 6: Currently Building / Lab */}
+        {/* Step 7: Currently Building / Lab */}
         <CurrentlyBuilding />
 
-        {/* Bridge 6 -> 7 */}
+        {/* Bridge 7 -> 8 */}
         <SectionFlowBridge
-          step="06 // WHAT'S NEXT"
+          step="07 // WHAT'S NEXT"
           label="THE NEXT BUILD"
           sublabel="Start Here"
         />
 
-        {/* Step 7: Contact / The Loop Continues */}
+        {/* Step 8: Contact / The Loop Continues */}
         <Contact />
       </main>
     </>
