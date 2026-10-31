@@ -170,14 +170,33 @@ export default async function CaseStudyPage({ params }: PageProps) {
               projectTitle={project.title}
             />
           ) : project.screenshot ? (
-            <div className="relative aspect-video rounded-xl sm:rounded-2xl overflow-hidden border border-border-subtle bg-surface">
-              <Image
-                src={project.screenshot}
-                alt={`${project.title} preview`}
-                fill
-                className="object-cover"
-                priority
-              />
+            <div className="group relative aspect-[16/10] sm:aspect-video rounded-xl sm:rounded-2xl overflow-hidden border border-border-subtle bg-[#090a0f] flex items-center justify-center">
+              {/* Ambient blurred backdrop — fills empty space with matching tones */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+                <Image
+                  src={project.screenshot}
+                  alt=""
+                  fill
+                  sizes="120px"
+                  quality={20}
+                  aria-hidden="true"
+                  className="object-cover scale-150 blur-3xl opacity-25 brightness-75 contrast-125 saturate-150"
+                />
+                <div className="absolute inset-0 bg-background/50 backdrop-blur-[1px]" />
+              </div>
+
+              {/* Foreground uncropped sharp image */}
+              <div className="relative z-10 w-full h-full max-w-full max-h-full p-2.5 sm:p-5 flex items-center justify-center">
+                <Image
+                  src={project.screenshot}
+                  alt={`${project.title} preview`}
+                  fill
+                  quality={95}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+                  className="object-contain object-center drop-shadow-[0_12px_32px_rgba(0,0,0,0.7)] transition-transform duration-500 group-hover:scale-[1.01]"
+                  priority
+                />
+              </div>
             </div>
           ) : (
             <div className="rounded-xl sm:rounded-2xl border border-border-subtle bg-surface p-6 sm:p-12 md:p-14 flex flex-col items-center justify-center text-center">

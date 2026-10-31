@@ -19,6 +19,13 @@ export interface ProjectPhoto {
   caption: string;
 }
 
+export interface ProjectImageConfig {
+  aspectRatio?: "16/9" | "16/10" | "4/3" | "9/16" | "auto";
+  orientation?: "landscape" | "portrait" | "auto";
+  fit?: "contain" | "cover";
+  caption?: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -29,6 +36,8 @@ export interface Project {
   screenshot: string | null;
   /** Image path alias */
   image?: string | null;
+  /** Presentation configuration for the project image showcase */
+  imageConfig?: ProjectImageConfig;
   /** Photo series or interface walkthrough screenshots */
   photoSeries?: ProjectPhoto[];
   gallery?: ProjectPhoto[];
@@ -385,6 +394,12 @@ export const portfolioData: PortfolioConfig = {
         "A personal voice assistant system integrating custom ESP32 hardware, microphone input, audio streaming, speech recognition, local AI models, and Flask backend infrastructure.",
       screenshot: "/projects/eden.png",
       image: "/projects/eden.png",
+      imageConfig: {
+        aspectRatio: "16/10",
+        orientation: "landscape",
+        fit: "contain",
+        caption: "EDEN voice assistant interface & local AI bridge.",
+      },
       technologies: ["ESP32", "Python", "Flask", "Whisper", "Local AI Models", "I2S Audio", "C/C++"],
       year: "2024",
       status: "Working Prototype",
@@ -435,6 +450,12 @@ export const portfolioData: PortfolioConfig = {
         "A full-stack attendance management system featuring Next.js, Supabase, role-based workflows for teachers and students, subject-wise tracking, and photo-assisted verification concepts.",
       screenshot: "/projects/attender/attender-landing.png",
       image: "/projects/attender/attender-landing.png",
+      imageConfig: {
+        aspectRatio: "auto",
+        orientation: "landscape",
+        fit: "contain",
+        caption: "ATTENDER smart attendance portal & rapid classroom scan workflow.",
+      },
       photoSeries: [
         {
           url: "/projects/attender/attender-landing.png",
@@ -516,6 +537,12 @@ export const portfolioData: PortfolioConfig = {
         "A food discovery and recipe application powered by Next.js, Supabase PostgreSQL, full-text ingredient search, bookmarking, and AI-assisted recipe suggestions.",
       screenshot: "/projects/craveai.png",
       image: "/projects/craveai.png",
+      imageConfig: {
+        aspectRatio: "16/10",
+        orientation: "landscape",
+        fit: "contain",
+        caption: "CraveAI culinary discovery engine & pantry search interface.",
+      },
       technologies: ["Next.js", "JavaScript", "Supabase", "PostgreSQL", "Tailwind CSS", "AI APIs"],
       year: "2024",
       status: "Functional Project",
@@ -562,6 +589,12 @@ export const portfolioData: PortfolioConfig = {
         "A smart security and energy-saving concept combining biometric fingerprint locking, optical motion detection, automated appliance relay shutoff, and manual safety overrides.",
       screenshot: "/projects/smartshut.png",
       image: "/projects/smartshut.png",
+      imageConfig: {
+        aspectRatio: "16/9",
+        orientation: "landscape",
+        fit: "contain",
+        caption: "SmartShut biometric security architecture & room energy management.",
+      },
       technologies: ["ESP32 / Arduino", "Fingerprint Sensor", "PIR Motion", "Relays", "C/C++", "Electronics"],
       year: "2023",
       status: "Hardware Concept",
@@ -607,6 +640,13 @@ export const portfolioData: PortfolioConfig = {
       shortDescription:
         "An ongoing collection of hardware experiments, sensor networks, wireless ESP-NOW nodes, I2S audio pipelines, and bench-tested electronic circuits.",
       screenshot: null,
+      image: null,
+      imageConfig: {
+        aspectRatio: "auto",
+        orientation: "auto",
+        fit: "contain",
+        caption: "Embedded microcontroller workbench & sensor network testing log.",
+      },
       technologies: ["ESP32", "Arduino", "ESP8266", "I2C / SPI", "Sensors", "I2S Audio", "C++", "Circuits"],
       year: "2023 - Present",
       status: "Ongoing Experiments",

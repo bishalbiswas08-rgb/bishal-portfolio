@@ -111,18 +111,37 @@ export default function ProjectPhotoSeries({
 
       {/* Main Image Display */}
       <div className="mt-5 sm:mt-6 space-y-4">
-        <div className="group relative aspect-[16/10] sm:aspect-video rounded-xl overflow-hidden border border-border-subtle bg-background">
-          <Image
-            src={currentPhoto.url}
-            alt={currentPhoto.title}
-            fill
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
-            priority
-          />
+        <div className="group relative aspect-[16/10] sm:aspect-video rounded-xl sm:rounded-2xl overflow-hidden border border-border-subtle bg-[#090a0f] flex items-center justify-center">
+          {/* Ambient blurred backdrop — fills unused space with matching tones */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+            <Image
+              src={currentPhoto.url}
+              alt=""
+              fill
+              sizes="120px"
+              quality={20}
+              aria-hidden="true"
+              className="object-cover scale-150 blur-3xl opacity-25 brightness-75 contrast-125 saturate-150"
+            />
+            <div className="absolute inset-0 bg-background/50 backdrop-blur-[1px]" />
+          </div>
+
+          {/* Foreground uncropped, aspect-preserved, razor-sharp image */}
+          <div className="relative z-10 w-full h-full max-w-full max-h-full p-2 sm:p-4 flex items-center justify-center">
+            <Image
+              src={currentPhoto.url}
+              alt={currentPhoto.title}
+              fill
+              quality={95}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1100px"
+              className="object-contain object-center drop-shadow-[0_12px_28px_rgba(0,0,0,0.65)] transition-transform duration-500 group-hover:scale-[1.01]"
+              priority
+            />
+          </div>
 
           {/* Tag Pill */}
           {currentPhoto.tag && (
-            <div className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md bg-background/85 backdrop-blur-md border border-border-subtle font-mono text-[10px] sm:text-xs text-accent font-semibold tracking-wider uppercase shadow-md">
+            <div className="absolute top-3 left-3 z-20 px-2.5 py-1 rounded-md bg-background/85 backdrop-blur-md border border-border-subtle font-mono text-[10px] sm:text-xs text-accent font-semibold tracking-wider uppercase shadow-md">
               {currentPhoto.tag}
             </div>
           )}
@@ -130,7 +149,7 @@ export default function ProjectPhotoSeries({
           {/* Quick Expand Button */}
           <button
             onClick={() => setIsLightboxOpen(true)}
-            className="absolute top-3 right-3 z-10 px-3 py-1.5 rounded-md bg-background/85 backdrop-blur-md border border-border-subtle hover:border-accent/50 text-primary-muted hover:text-accent font-mono text-[10px] sm:text-xs flex items-center gap-1.5 shadow-md transition-all active:scale-95"
+            className="absolute top-3 right-3 z-20 px-3 py-1.5 rounded-md bg-background/85 backdrop-blur-md border border-border-subtle hover:border-accent/50 text-primary-muted hover:text-accent font-mono text-[10px] sm:text-xs flex items-center gap-1.5 shadow-md transition-all active:scale-95"
             aria-label="View full resolution"
           >
             <Maximize2 className="w-3.5 h-3.5" />
@@ -140,14 +159,14 @@ export default function ProjectPhotoSeries({
           {/* Subtle Navigation Overlays on Hover */}
           <button
             onClick={handlePrev}
-            className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/80 backdrop-blur-md border border-border-subtle text-primary opacity-0 group-hover:opacity-100 hover:text-accent hover:border-accent/50 transition-all hidden sm:flex items-center justify-center"
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-background/80 backdrop-blur-md border border-border-subtle text-primary opacity-0 group-hover:opacity-100 hover:text-accent hover:border-accent/50 transition-all hidden sm:flex items-center justify-center"
             aria-label="Previous image"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/80 backdrop-blur-md border border-border-subtle text-primary opacity-0 group-hover:opacity-100 hover:text-accent hover:border-accent/50 transition-all hidden sm:flex items-center justify-center"
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-background/80 backdrop-blur-md border border-border-subtle text-primary opacity-0 group-hover:opacity-100 hover:text-accent hover:border-accent/50 transition-all hidden sm:flex items-center justify-center"
             aria-label="Next image"
           >
             <ChevronRight className="w-5 h-5" />
@@ -188,19 +207,21 @@ export default function ProjectPhotoSeries({
                     : "border-border-subtle hover:border-primary-muted/50 opacity-70 hover:opacity-100"
                 }`}
               >
-                <div className="relative aspect-video rounded overflow-hidden mb-1.5 bg-background">
+                <div className="relative aspect-video rounded overflow-hidden mb-1.5 bg-[#090a0f] flex items-center justify-center">
                   <Image
                     src={photo.url}
                     alt={photo.title}
                     fill
-                    className="object-cover object-top"
+                    sizes="(max-width: 640px) 50vw, 25vw"
+                    quality={85}
+                    className="object-contain object-center p-0.5"
                   />
                   <div
                     className={`absolute inset-0 transition-opacity ${
                       isActive ? "bg-transparent" : "bg-background/20 group-hover/thumb:opacity-0"
                     }`}
                   />
-                  <span className="absolute bottom-1 right-1 font-mono text-[8px] px-1 py-0.5 rounded bg-background/80 text-primary-muted">
+                  <span className="absolute bottom-1 right-1 font-mono text-[8px] px-1 py-0.5 rounded bg-background/80 text-primary-muted z-10">
                     0{idx + 1}
                   </span>
                 </div>

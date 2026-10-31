@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -11,6 +10,7 @@ import {
 } from "lucide-react";
 import { Project } from "@/data/portfolio";
 import Badge from "@/components/ui/Badge";
+import ProjectPreview from "@/components/projects/ProjectPreview";
 
 interface ProjectCardProps {
   project: Project;
@@ -33,103 +33,88 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     <article className="group rounded-2xl bg-surface border border-border-subtle hover:border-border-accent/40 transition-all duration-300 overflow-hidden flex flex-col lg:flex-row shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
       {/* Visual / Screenshot / Preview Panel */}
       <div
-        className={`w-full lg:w-5/12 relative min-h-[220px] sm:min-h-[280px] md:min-h-[340px] bg-surface-subtle border-b lg:border-b-0 ${
+        className={`w-full lg:w-1/2 xl:w-[53%] relative min-h-[300px] sm:min-h-[360px] md:min-h-[420px] lg:min-h-[480px] bg-[#07080d] border-b lg:border-b-0 ${
           isEven ? "lg:order-1 lg:border-r" : "lg:order-2 lg:border-l"
-        } border-border-subtle flex items-center justify-center overflow-hidden p-3 sm:p-5 md:p-6`}
+        } border-border-subtle flex items-center justify-center p-3 sm:p-5 md:p-6 overflow-hidden`}
       >
         {imageSrc ? (
-          project.liveUrl ? (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group/preview block relative w-full h-full aspect-[16/10] sm:aspect-video rounded-xl overflow-hidden border border-border-subtle hover:border-accent/50 transition-all duration-300 focus-visible:outline-accent"
-              aria-label={`Open live demo of ${project.title}`}
-            >
-              <Image
-                src={imageSrc}
-                alt={`${project.title} preview`}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                className="object-cover object-center group-hover/preview:scale-[1.02] group-hover/preview:brightness-105 transition-all duration-500 ease-out"
-                priority={index < 2}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-transparent opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300" />
-              {project.photoSeries && project.photoSeries.length > 1 && (
-                <div className="absolute bottom-2.5 left-2.5 z-10 px-2 sm:px-2.5 py-1 rounded-md bg-background/90 backdrop-blur-md border border-border-subtle text-primary font-mono text-[9px] sm:text-[10px] flex items-center gap-1.5 shadow-md">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                  <span>{project.photoSeries.length} UI Screens</span>
-                </div>
-              )}
-              <div className="absolute top-2.5 right-2.5 z-10 px-2 sm:px-2.5 py-1 rounded-md bg-bg/85 backdrop-blur-md border border-accent/40 text-accent font-mono text-[10px] sm:text-[11px] flex items-center gap-1 shadow-md">
-                <span>View Live Site</span>
-                <ExternalLink className="w-3 h-3" />
-              </div>
-            </a>
-          ) : (
-            <Link
-              href={`/work/${project.slug}`}
-              className="group/preview block relative w-full h-full aspect-[16/10] sm:aspect-video rounded-xl overflow-hidden border border-border-subtle hover:border-accent/50 transition-all duration-300 focus-visible:outline-accent"
-              aria-label={`View detailed case study for ${project.title}`}
-            >
-              <Image
-                src={imageSrc}
-                alt={`${project.title} preview`}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                className="object-cover object-center group-hover/preview:scale-[1.02] group-hover/preview:brightness-105 transition-all duration-500 ease-out"
-                priority={index < 2}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-transparent opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300" />
-              {project.photoSeries && project.photoSeries.length > 1 && (
-                <div className="absolute bottom-2.5 left-2.5 z-10 px-2 sm:px-2.5 py-1 rounded-md bg-background/90 backdrop-blur-md border border-border-subtle text-primary font-mono text-[9px] sm:text-[10px] flex items-center gap-1.5 shadow-md">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                  <span>{project.photoSeries.length} UI Screens</span>
-                </div>
-              )}
-              <div className="absolute top-2.5 right-2.5 z-10 px-2 sm:px-2.5 py-1 rounded-md bg-bg/85 backdrop-blur-md border border-border-subtle text-primary-muted group-hover/preview:text-accent group-hover/preview:border-accent/40 font-mono text-[10px] sm:text-[11px] flex items-center gap-1 shadow-md transition-colors">
-                <span>Case Study</span>
-                <ArrowRight className="w-3 h-3 group-hover/preview:translate-x-0.5 transition-transform" />
-              </div>
-            </Link>
-          )
+          <ProjectPreview
+            src={imageSrc}
+            alt={`${project.title} interface preview`}
+            title={project.title}
+            slug={project.slug}
+            liveUrl={project.liveUrl}
+            photoCount={project.photoSeries?.length || 0}
+            priority={index < 2}
+            orientation={project.imageConfig?.orientation || "landscape"}
+          />
         ) : (
-          /* Bespoke technical visual placeholder */
-          <div className="w-full h-full rounded-xl border border-border-subtle/80 bg-surface/80 p-4 sm:p-6 flex flex-col justify-between relative overflow-hidden group-hover:border-accent/30 transition-colors">
-            <div className="flex items-center justify-between pb-2.5 sm:pb-3 border-b border-border-subtle/60 gap-2">
+          /* Bespoke technical hardware workbench visual for Embedded Lab */
+          <Link
+            href={`/work/${project.slug}`}
+            className="w-full h-full min-h-[300px] sm:min-h-[360px] rounded-xl sm:rounded-2xl border border-border-subtle/80 bg-[#090a10] p-4 sm:p-6 flex flex-col justify-between relative overflow-hidden group/hw hover:border-accent/40 transition-all duration-300 shadow-inner focus-visible:outline-accent"
+            aria-label={`View detailed hardware experiments for ${project.title}`}
+          >
+            {/* Ambient circuit background grid */}
+            <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+
+            {/* Top diagnostic telemetry bar */}
+            <div className="relative z-10 flex items-center justify-between pb-3 border-b border-border-subtle/60 gap-2">
               <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-accent flex items-center gap-1.5 truncate">
                 <Cpu className="w-3.5 h-3.5 shrink-0" />
-                <span className="truncate">{project.category}</span>
+                <span className="truncate">HARDWARE // BENCH &amp; NODES</span>
               </span>
-              <span
-                className={`font-mono text-[9px] sm:text-[10px] px-2 py-0.5 rounded border shrink-0 ${
-                  statusBadgeStyles[project.status] || "border-border-subtle text-primary-muted"
-                }`}
-              >
-                {project.status}
+              <span className="font-mono text-[9px] sm:text-[10px] px-2 py-0.5 rounded border border-purple-500/30 bg-purple-500/10 text-purple-400 shrink-0">
+                ACTIVE LAB
               </span>
             </div>
 
-            <div className="my-auto py-4 sm:py-6 text-center space-y-1.5 sm:space-y-2">
-              <div className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-primary tracking-tight break-words">
-                {project.title}
+            {/* Circuit Pinout & Telemetry Visual */}
+            <div className="relative z-10 my-auto py-4 sm:py-6 space-y-3.5">
+              <div className="text-center">
+                <div className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-primary tracking-tight break-words group-hover/hw:text-accent transition-colors">
+                  {project.title}
+                </div>
+                <p className="font-mono text-[11px] sm:text-xs text-primary-muted max-w-sm mx-auto mt-2 leading-relaxed">
+                  {project.tagline}
+                </p>
               </div>
-              <p className="font-mono text-[11px] sm:text-xs text-primary-muted max-w-xs mx-auto leading-relaxed">
-                {project.tagline}
-              </p>
+
+              {/* Pinout & Bus telemetry chips */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-w-md mx-auto pt-2">
+                <div className="p-2 rounded bg-surface/70 border border-border-subtle/60 text-center font-mono text-[10px]">
+                  <span className="text-primary-muted block text-[8px] uppercase">Bus</span>
+                  <span className="text-accent font-semibold">I2C / SPI / UART</span>
+                </div>
+                <div className="p-2 rounded bg-surface/70 border border-border-subtle/60 text-center font-mono text-[10px]">
+                  <span className="text-primary-muted block text-[8px] uppercase">Radio</span>
+                  <span className="text-emerald-400 font-semibold">ESP-NOW / Wi-Fi</span>
+                </div>
+                <div className="p-2 rounded bg-surface/70 border border-border-subtle/60 text-center font-mono text-[10px] col-span-2 sm:col-span-1">
+                  <span className="text-primary-muted block text-[8px] uppercase">Audio</span>
+                  <span className="text-sky-400 font-semibold">16-bit I2S PCM</span>
+                </div>
+              </div>
             </div>
 
-            <div className="pt-2.5 sm:pt-3 border-t border-border-subtle/60 flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-primary-muted/60">
-              <span className="truncate">PROJECT // {project.slug}</span>
-              <span className="shrink-0">CASE STUDY →</span>
+            {/* Bottom status bar */}
+            <div className="relative z-10 pt-3 border-t border-border-subtle/60 flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-primary-muted/70">
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                <span>BENCH // ACTIVE LOG</span>
+              </span>
+              <span className="text-accent font-semibold flex items-center gap-1 group-hover/hw:translate-x-1 transition-transform">
+                <span>VIEW CASE STUDY</span>
+                <ArrowRight className="w-3 h-3" />
+              </span>
             </div>
-          </div>
+          </Link>
         )}
       </div>
 
       {/* Content Container */}
       <div
-        className={`w-full lg:w-7/12 p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-between ${
+        className={`w-full lg:w-1/2 xl:w-[47%] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-between ${
           isEven ? "lg:order-2" : "lg:order-1"
         }`}
       >
