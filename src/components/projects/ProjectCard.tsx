@@ -55,6 +55,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 priority={index < 2}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-transparent opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300" />
+              {project.photoSeries && project.photoSeries.length > 1 && (
+                <div className="absolute bottom-2.5 left-2.5 z-10 px-2 sm:px-2.5 py-1 rounded-md bg-background/90 backdrop-blur-md border border-border-subtle text-primary font-mono text-[9px] sm:text-[10px] flex items-center gap-1.5 shadow-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                  <span>{project.photoSeries.length} UI Screens</span>
+                </div>
+              )}
               <div className="absolute top-2.5 right-2.5 z-10 px-2 sm:px-2.5 py-1 rounded-md bg-bg/85 backdrop-blur-md border border-accent/40 text-accent font-mono text-[10px] sm:text-[11px] flex items-center gap-1 shadow-md">
                 <span>View Live Site</span>
                 <ExternalLink className="w-3 h-3" />
@@ -75,6 +81,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 priority={index < 2}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-transparent opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300" />
+              {project.photoSeries && project.photoSeries.length > 1 && (
+                <div className="absolute bottom-2.5 left-2.5 z-10 px-2 sm:px-2.5 py-1 rounded-md bg-background/90 backdrop-blur-md border border-border-subtle text-primary font-mono text-[9px] sm:text-[10px] flex items-center gap-1.5 shadow-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                  <span>{project.photoSeries.length} UI Screens</span>
+                </div>
+              )}
               <div className="absolute top-2.5 right-2.5 z-10 px-2 sm:px-2.5 py-1 rounded-md bg-bg/85 backdrop-blur-md border border-border-subtle text-primary-muted group-hover/preview:text-accent group-hover/preview:border-accent/40 font-mono text-[10px] sm:text-[11px] flex items-center gap-1 shadow-md transition-colors">
                 <span>Case Study</span>
                 <ArrowRight className="w-3 h-3 group-hover/preview:translate-x-0.5 transition-transform" />

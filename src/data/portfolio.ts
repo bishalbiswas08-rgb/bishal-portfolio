@@ -12,6 +12,13 @@ export interface ProjectCaseStudy {
   verifiedOutcome?: string;
 }
 
+export interface ProjectPhoto {
+  url: string;
+  title: string;
+  tag?: string;
+  caption: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -22,6 +29,9 @@ export interface Project {
   screenshot: string | null;
   /** Image path alias */
   image?: string | null;
+  /** Photo series or interface walkthrough screenshots */
+  photoSeries?: ProjectPhoto[];
+  gallery?: ProjectPhoto[];
   technologies: string[];
   year?: string;
   liveUrl?: string | null;
@@ -423,9 +433,39 @@ export const portfolioData: PortfolioConfig = {
       category: "Full-Stack Web",
       shortDescription:
         "A full-stack attendance management system featuring Next.js, Supabase, role-based workflows for teachers and students, subject-wise tracking, and photo-assisted verification concepts.",
-      screenshot: "/projects/attender.png",
-      image: "/projects/attender.png",
-      technologies: ["Next.js", "JavaScript", "Supabase", "PostgreSQL", "Tailwind CSS", "Row Level Security"],
+      screenshot: "/projects/attender/attender-landing.png",
+      image: "/projects/attender/attender-landing.png",
+      photoSeries: [
+        {
+          url: "/projects/attender/attender-landing.png",
+          title: "Smart Attendance Landing & Fast Workflow",
+          tag: "01 // ENTRY POINT",
+          caption:
+            "Public landing interface introducing ATTENDER's 60-second AI classroom roll-call workflow, instant camera scan action, and step-by-step pipeline (Open Class → Snap Classroom → Review Faces → Confirm & Save).",
+        },
+        {
+          url: "/projects/attender/attender-class-management.png",
+          title: "Class Management & Active Rosters",
+          tag: "02 // ROSTER DASHBOARD",
+          caption:
+            "Management console displaying academic classes and sections (e.g. first year - D, jimmy - A), active rosters, enrolled student counts, and live Supabase synchronization.",
+        },
+        {
+          url: "/projects/attender/attender-ai-assistant.png",
+          title: "ATTENDER AI — Natural Language Query Agent",
+          tag: "03 // GEMINI ASSISTANT",
+          caption:
+            "Conversational Gemini AI assistant enabling educators to query attendance anomalies ('Who has attendance below 75%?', 'Summarize October attendance') through a controlled data access architecture.",
+        },
+        {
+          url: "/projects/attender/attender-admin-security.png",
+          title: "Admin & Security Control Center",
+          tag: "04 // SECURITY & AUDIT",
+          caption:
+            "Institutional administration center managing cryptographically signed single-use invitations with 7-day expiration, educator role assignments, student portal links, and immutable security audit logs.",
+        },
+      ],
+      technologies: ["Next.js", "JavaScript", "Supabase", "PostgreSQL", "Gemini AI", "Tailwind CSS", "Row Level Security"],
       year: "2024",
       status: "Active Build",
       liveUrl: null,
@@ -447,20 +487,23 @@ export const portfolioData: PortfolioConfig = {
           "Architected PostgreSQL relational schema with tables for users, roles, subjects, classes, and daily attendance records.",
           "Implemented Supabase Auth with custom user metadata and Row-Level Security (RLS) policies to safeguard records.",
           "Created role-specific dashboards: Admin portal for subject/user creation, Teacher portal for 1-click marking, and Student portal for progress analytics.",
-          "Designed subject-wise percentage counters with low-attendance visual alerts.",
-          "Prototyped photo/face verification upload concept for validating student presence during sessions.",
+          "Integrated ATTENDER AI: a Gemini-powered natural-language assistant querying attendance anomalies and summaries through a controlled data access architecture.",
+          "Engineered single-use cryptographically signed invitation system with 7-day expiration and immutable security audit logs.",
+          "Designed subject-wise percentage counters with low-attendance visual alerts and rapid classroom snapshot workflow.",
         ],
         technicalImplementation: [
           "Next.js App Router with client and server components for fast rendering.",
           "Supabase Row-Level Security (RLS) rules verifying user JWT against class teacher IDs.",
+          "Gemini Vision & LLM APIs for classroom photo processing and conversational query answering.",
           "Optimistic UI state updates for quick checkbox attendance marking.",
           "Subject-wise aggregation queries calculating percentage attendance in real-time.",
         ],
         featuresDelivered: [
           "Multi-role authentication (Admin, Teacher, Student).",
-          "One-click rapid attendance entry grid.",
-          "Subject-wise attendance tracking and warning thresholds.",
-          "Exportable records and attendance summary statistics.",
+          "One-click rapid attendance entry grid and 60-second classroom scan flow.",
+          "ATTENDER AI natural-language assistant for instant attendance queries.",
+          "Admin & Security control center with signed educator invitations and audit trails.",
+          "Subject-wise attendance tracking, warning thresholds, and exportable records.",
         ],
       },
     },

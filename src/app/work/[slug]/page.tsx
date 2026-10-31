@@ -19,6 +19,7 @@ import {
 import { portfolioData } from "@/data/portfolio";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
+import ProjectPhotoSeries from "@/components/projects/ProjectPhotoSeries";
 
 interface PageProps {
   params: Promise<{
@@ -161,9 +162,14 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </div>
         </header>
 
-        {/* Visual / Screenshot Showcase */}
+        {/* Visual / Screenshot Showcase or Photo Series */}
         <div className="my-8 sm:my-12">
-          {project.screenshot ? (
+          {project.photoSeries && project.photoSeries.length > 0 ? (
+            <ProjectPhotoSeries
+              photos={project.photoSeries}
+              projectTitle={project.title}
+            />
+          ) : project.screenshot ? (
             <div className="relative aspect-video rounded-xl sm:rounded-2xl overflow-hidden border border-border-subtle bg-surface">
               <Image
                 src={project.screenshot}
