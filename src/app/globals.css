@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0B0D12;
+  --surface: #171A22;
+  --surface-elevated: #1F232D;
+  --surface-subtle: #12141A;
+  --accent: #A8FF78;
+  --accent-muted: rgba(168, 255, 120, 0.12);
+  --accent-border: rgba(168, 255, 120, 0.25);
+  --primary: #F4F5F7;
+  --muted: #A5A8B3;
+  --border: rgba(244, 245, 247, 0.08);
+  --border-strong: rgba(244, 245, 247, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+  color: var(--primary);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  selection-background-color: var(--accent);
+  selection-color: #000;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: #0B0D12;
+}
+
+/* Subtle editorial background lighting */
+.ambient-glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12;
+  z-index: 0;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0D12;
+}
+::-webkit-scrollbar-thumb {
+  background: #232834;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #363C4E;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Grain texture overlay */
+.grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
