@@ -38,6 +38,8 @@ export interface Project {
   image?: string | null;
   /** Presentation configuration for the project image showcase */
   imageConfig?: ProjectImageConfig;
+  /** Editorial layout composition for this project's showcase card */
+  cardLayout?: "hero-top" | "split-image-right" | "split-image-left";
   /** Photo series or interface walkthrough screenshots */
   photoSeries?: ProjectPhoto[];
   gallery?: ProjectPhoto[];
@@ -400,6 +402,7 @@ export const portfolioData: PortfolioConfig = {
         fit: "contain",
         caption: "EDEN voice assistant interface & local AI bridge.",
       },
+      cardLayout: "hero-top",
       technologies: ["ESP32", "Python", "Flask", "Whisper", "Local AI Models", "I2S Audio", "C/C++"],
       year: "2024",
       status: "Working Prototype",
@@ -456,6 +459,7 @@ export const portfolioData: PortfolioConfig = {
         fit: "contain",
         caption: "ATTENDER smart attendance portal & rapid classroom scan workflow.",
       },
+      cardLayout: "hero-top",
       photoSeries: [
         {
           url: "/projects/attender/attender-landing.png",
@@ -543,6 +547,7 @@ export const portfolioData: PortfolioConfig = {
         fit: "contain",
         caption: "CraveAI culinary discovery engine & pantry search interface.",
       },
+      cardLayout: "split-image-left",
       technologies: ["Next.js", "JavaScript", "Supabase", "PostgreSQL", "Tailwind CSS", "AI APIs"],
       year: "2024",
       status: "Functional Project",
@@ -595,6 +600,7 @@ export const portfolioData: PortfolioConfig = {
         fit: "contain",
         caption: "SmartShut biometric security architecture & room energy management.",
       },
+      cardLayout: "split-image-right",
       technologies: ["ESP32 / Arduino", "Fingerprint Sensor", "PIR Motion", "Relays", "C/C++", "Electronics"],
       year: "2023",
       status: "Hardware Concept",
@@ -647,6 +653,7 @@ export const portfolioData: PortfolioConfig = {
         fit: "contain",
         caption: "Embedded microcontroller workbench & sensor network testing log.",
       },
+      cardLayout: "split-image-right",
       technologies: ["ESP32", "Arduino", "ESP8266", "I2C / SPI", "Sensors", "I2S Audio", "C++", "Circuits"],
       year: "2023 - Present",
       status: "Ongoing Experiments",
