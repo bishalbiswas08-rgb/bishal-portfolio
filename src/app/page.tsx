@@ -3,7 +3,7 @@ import IntroLoader from "@/components/ui/IntroLoader";
 import AmbientBackground from "@/components/ui/AmbientBackground";
 import SectionFlowBridge from "@/components/ui/SectionFlowBridge";
 import Hero from "@/components/sections/Hero";
-import PersonalIntroMotion from "@/components/sections/PersonalIntroMotion";
+import LandingMotionFilm from "@/components/sections/LandingMotionFilm";
 import MotionInfographic from "@/components/infographic/MotionInfographic";
 import About from "@/components/sections/About";
 import Expertise from "@/components/sections/Expertise";
@@ -32,8 +32,8 @@ export default function Home() {
           sublabel="Hardware + Software"
         />
 
-        {/* Step 2: Title Sequence & Builder Identity */}
-        <PersonalIntroMotion />
+        {/* Step 2: Title Sequence & Builder Identity Film */}
+        <LandingMotionFilm />
 
         {/* Bridge 2 -> 3 */}
         <SectionFlowBridge

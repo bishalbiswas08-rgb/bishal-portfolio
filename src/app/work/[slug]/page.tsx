@@ -227,6 +227,14 @@ export default async function CaseStudyPage({ params }: PageProps) {
           )}
         </div>
 
+        {/* Photo Series & Interface Walkthrough (if project provides screenshots) */}
+        {project.photoSeries && project.photoSeries.length > 0 && (
+          <ProjectPhotoSeries
+            photos={project.photoSeries}
+            projectTitle={project.title}
+          />
+        )}
+
         {/* Case Study Deep Dive Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16">
           {/* Main Content (8 cols) */}
